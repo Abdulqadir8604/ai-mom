@@ -1,0 +1,17 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+output/
+audio/
+profiles/*.npy
+profiles/index.json
+*.egg-info/
+dist/
+.DS_Store
+web/frontend/node_modules/
+web/frontend/dist/
+*.pt
+*.bin
+*.onnx

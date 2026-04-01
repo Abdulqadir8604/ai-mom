@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens: Light Mode (default) ─────────────────────────────── */
+:root {
+  --bg:          #FAFAF7;
+  --surface:     #FFFFFF;
+  --surface2:    #F5F3EE;
+  --border:      #E5E3DC;
+  --ink:         #1A1A18;
+  --ink2:        #6B6860;
+  --ink3:        #B0AEA8;
+  --primary:     #E63946;
+  --primary-h:   #CC2936;
+  --secondary:   #2EC4B6;
+  --secondary-h: #22A99D;
+  --gold:        #F4A261;
+  --success:     #2A9D6E;
+  --warning:     #E9C46A;
+  --danger:      #E63946;
+  --shadow:      rgba(26,26,24,0.06);
+  --shadow-lift: rgba(26,26,24,0.12);
+}
+
+/* ─── Dark Mode ────────────────────────────────────────────────────────── */
+.dark {
+  --bg:          #0F0F12;
+  --surface:     #1C1C24;
+  --surface2:    #252530;
+  --border:      #2E2E3A;
+  --ink:         #F0EEE8;
+  --ink2:        #9896A0;
+  --ink3:        #4A4860;
+  --primary:     #FF4D5A;
+  --primary-h:   #E63946;
+  --secondary:   #3DD9CB;
+  --secondary-h: #2EC4B6;
+  --gold:        #FFB347;
+  --success:     #3DD68C;
+  --warning:     #FFD166;
+  --danger:      #FF4D5A;
+  --shadow:      rgba(0,0,0,0.3);
+  --shadow-lift: rgba(0,0,0,0.5);
+}
+
+/* ─── Base ─────────────────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: "DM Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ─── Scrollbar ────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--ink3); }
+
+/* ─── Terminal ─────────────────────────────────────────────────────────── */
+.log-terminal {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+/* ─── Drop zone ────────────────────────────────────────────────────────── */
+.drop-active {
+  border-color: var(--primary) !important;
+  background: rgba(230, 57, 70, 0.04) !important;
+}
+
+/* ─── Waveform bars ────────────────────────────────────────────────────── */
+.wave-bar {
+  width: 3px;
+  border-radius: 2px;
+  transform-origin: bottom center;
+  background: currentColor;
+}
+
+/* ─── Status badge shimmer (processing states) ─────────────────────────── */
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    var(--surface2) 0%,
+    var(--border) 40%,
+    var(--surface2) 80%,
+    var(--surface2) 100%
+  );
+  background-size: 400px 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* ─── Card hover lift ──────────────────────────────────────────────────── */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--shadow-lift);
+}
+
+/* ─── Gradient mesh background ────────────────────────────────────────── */
+.mesh-bg {
+  position: relative;
+  overflow: hidden;
+}
+.mesh-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(230,57,70,0.07) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(46,196,182,0.07) 0%, transparent 50%),
+    radial-gradient(circle at 60% 10%, rgba(244,162,97,0.05) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
+}
+.mesh-bg > * { position: relative; z-index: 1; }
+
+/* ─── REC badge ─────────────────────────────────────────────────────────── */
+.rec-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  padding: 3px 8px 3px 6px;
+  border: 1.5px solid var(--primary);
+  border-radius: 4px;
+}
+.rec-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: rec-pulse 1.4s ease-in-out infinite;
+}
+
+/* ─── Keyframes ─────────────────────────────────────────────────────────── */
+@keyframes wave {
+  0%, 100% { transform: scaleY(0.25); }
+  50%       { transform: scaleY(1); }
+}
+
+@keyframes rec-pulse {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%       { opacity: 0.3; transform: scale(0.65); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+/* ─── Selection ─────────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(230, 57, 70, 0.18);
+  color: var(--ink);
+}

@@ -1,0 +1,177 @@
+{
+  "language": "Lisan-ud-Dawat",
+  "script": "Urdu (Gujarati spoken)",
+  "whisper_language_code": "ar",
+  "description": "Script standard for consistent Urdu-script spellings in LSD meetings",
+  "core_distinction": {
+    "problem": "Whisper writes ن (hard noon) where ں (noon ghunna) is required",
+    "solution": "Context-based correction using GPT"
+  },
+  "groups": [
+    {
+      "id": "A",
+      "name": "Preposition 'maa' (in) — No Nasal",
+      "script_form": "ما",
+      "nasal": false,
+      "description": "When 'maa' functions as a locative preposition meaning 'in', it carries no nasal. It appears before a noun.",
+      "examples": [
+        {
+          "urdu": "مانے کالے میٹنگ ما جاوانو چھے",
+          "roman": "mane kaale meeting maa jaavaanu chhe",
+          "meaning": "I have to go to the meeting"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "name": "'maa' as Mother — With Noon Ghunna",
+      "script_form": "ماں",
+      "nasal": true,
+      "description": "When 'maa' refers to the person (mother), it carries noon ghunna. Context determines which form to use.",
+      "examples": [
+        {
+          "urdu": "مانی ماں گھرے چھے",
+          "roman": "maari maa ghare chhe",
+          "meaning": "my mother is home"
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "name": "Hard Noon — Pronouns and Postpositions",
+      "script_form": "ن",
+      "nasal": false,
+      "description": "Use full consonant noon (ن). Safe from Whisper confusion. Do not require nasal correction.",
+      "examples": [
+        {
+          "urdu": "مانے",
+          "roman": "maane",
+          "meaning": "I / me"
+        },
+        {
+          "urdu": "تانے",
+          "roman": "taane",
+          "meaning": "you"
+        },
+        {
+          "urdu": "امانے",
+          "roman": "amaane",
+          "meaning": "us"
+        },
+        {
+          "urdu": "تمانے",
+          "roman": "tamaane",
+          "meaning": "you all"
+        },
+        {
+          "urdu": "انے",
+          "roman": "ane",
+          "meaning": "and"
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "name": "Hard Noon — Verb Infinitives (-vaanu endings)",
+      "script_form": "ن",
+      "nasal": false,
+      "description": "All verb infinitive forms ending in '-vaanu' use hard noon. Consistent across verb class.",
+      "examples": [
+        {
+          "urdu": "جاوانو",
+          "roman": "jaavaanu",
+          "meaning": "to go"
+        },
+        {
+          "urdu": "آوانو",
+          "roman": "aavaanu",
+          "meaning": "to come"
+        },
+        {
+          "urdu": "کروانو",
+          "roman": "karvaanu",
+          "meaning": "to do"
+        },
+        {
+          "urdu": "لیوانو",
+          "roman": "levaanu",
+          "meaning": "to take"
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "name": "Hard Noon — Standalone Nouns and Particles",
+      "script_form": "ن",
+      "nasal": false,
+      "description": "Standalone nouns and particles that use hard noon consistently.",
+      "examples": [
+        {
+          "urdu": "مان",
+          "roman": "maan",
+          "meaning": "respect / pride"
+        },
+        {
+          "urdu": "کان",
+          "roman": "kaan",
+          "meaning": "ear"
+        },
+        {
+          "urdu": "ناان",
+          "roman": "naan",
+          "meaning": "name / bread"
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "name": "Noon Ghunna — Locatives and Affirmations",
+      "script_form": "ں",
+      "nasal": true,
+      "description": "Locative adverbs and affirmation/negation particles that carry noon ghunna.",
+      "examples": [
+        {
+          "urdu": "ہاں",
+          "roman": "haa",
+          "meaning": "yes"
+        },
+        {
+          "urdu": "ناں",
+          "roman": "naa",
+          "meaning": "no / not"
+        },
+        {
+          "urdu": "یہاں",
+          "roman": "yahaan",
+          "meaning": "here"
+        },
+        {
+          "urdu": "وہاں",
+          "roman": "vahaan",
+          "meaning": "there"
+        }
+      ]
+    }
+  ],
+  "correction_prompt_template": "You are an expert in Lisan-ud-Dawat (Gujarati written in Urdu script).\nFix the following text according to these rules:\n- Correct all spelling errors\n- Apply nasal sounds correctly (noon ghunna vs hard noon)\n- 'maa' as preposition (in) = ما — no noon ghunna\n- 'maa' as mother = ماں — with noon ghunna\n- Verb infinitives (-vaanu) always use hard noon\n- Maintain natural pronunciation and meaning\n\nText: {whisper_output}",
+  "fonts": {
+    "directory": "Al_Kanz_Fonts_For_Windows",
+    "primary": "Al-Kanz for Windows.ttf",
+    "secondary": "Kanz-al-Marjaan.ttf",
+    "note": "Al-Kanz fonts for LSD Urdu script rendering in output documents and UI"
+  },
+  "roman_conversion_rules": {
+    "maa_preposition": "ما",
+    "maa_mother": "ماں",
+    "vaanu_suffix": "وانو",
+    "maane_pronoun": "مانے",
+    "taane_pronoun": "تانے",
+    "amaane_pronoun": "امانے",
+    "tamaane_pronoun": "تمانے",
+    "ane_conjunction": "انے",
+    "haa_affirmation": "ہاں",
+    "naa_negation": "ناں",
+    "yahaan_locative": "یہاں",
+    "vahaan_locative": "وہاں"
+  }
+}

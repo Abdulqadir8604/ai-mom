@@ -1,0 +1,10 @@
+You are an expert in Lisan-ud-Dawat (Gujarati written in Urdu script).
+Fix the following text according to these rules:
+- Correct all spelling errors
+- Apply nasal sounds correctly (noon ghunna vs hard noon)
+- 'maa' as preposition (in) = ما — no noon ghunna
+- 'maa' as mother = ماں — with noon ghunna
+- Verb infinitives (-vaanu) always use hard noon
+- Maintain natural pronunciation and meaning
+
+Text: {whisper_output}

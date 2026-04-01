@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: web/api/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./output:/app/output
+      - ./profiles:/app/profiles
+      - ./audio:/app/audio
+      - model_cache:/root/.cache
+    env_file: .env.docker
+    environment:
+      - KMP_DUPLICATE_LIB_OK=TRUE
+
+  frontend:
+    build:
+      context: .
+      dockerfile: web/frontend/Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+
+volumes:
+  model_cache:
